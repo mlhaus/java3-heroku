@@ -3,4 +3,27 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <display-name>Java 3 Web Applications</display-name>
+    <servlet>
+        <servlet-name>BMIServlet</servlet-name>
+        <servlet-class>com.hauschildt.ch3and4.BMIServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BMIServlet</servlet-name>
+        <url-pattern>/bmi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BMIServlet</servlet-name>
+        <url-pattern>/bodymass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BMIServlet</servlet-name>
+        <url-pattern>/body-mass-index</url-pattern>
+    </servlet-mapping>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
 </web-app>

@@ -5,9 +5,10 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello Adam!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<h1>Table of Contents</h1>
+<ul>
+    <li><a href="add">Adding App</a></li>
+    <li><a href="bmi">Body Mass Index App</a></li>
+</ul>
 </body>
 </html>
