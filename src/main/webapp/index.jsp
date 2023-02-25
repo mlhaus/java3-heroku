@@ -13,5 +13,10 @@
     <li><a href="bmi">Body Mass Index App</a></li>
     <li><a href="messaging">Messaging App</a></li>
 </ul>
+<h3>Chapter 5</h3>
+<ul>
+    <li><a href="view-users">View all users</a></li>
+    <li><a href="register">Register user</a></li>
+</ul>
 </body>
 </html>
