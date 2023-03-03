@@ -72,8 +72,13 @@ public class RegisterUserServlet extends HttpServlet {
             UserDAO_MySQL userDAO = new UserDAO_MySQL();
             int numRowsAffected = userDAO.addUser(user);
             if(numRowsAffected == 1) {
-//                results.put("userAddSuccess", "Your user account was created");
-                response.sendRedirect("validate-user");
+                numRowsAffected = userDAO.generate2FA(user);
+                if(numRowsAffected == 1) {
+                    response.sendRedirect("validate-user");
+                    return;
+                } else {
+                    results.put("userAddFail", "2-Factor code not generated");
+                }
             } else {
                 results.put("userAddFail", "Your user account could not be created");
             }

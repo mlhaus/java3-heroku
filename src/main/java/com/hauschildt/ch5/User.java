@@ -104,10 +104,13 @@ public class User {
     public void setPassword(char[] password) {
         // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
         // https://stackoverflow.com/questions/7655127/how-to-convert-a-char-array-back-to-a-string
+        // https://stackoverflow.com/questions/5317320/regex-to-check-string-contains-only-hex-characters
         String passwordStr = String.valueOf(password);
-//        if(!passwordStr.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$")) {
-//            throw new IllegalArgumentException("Password must include a minimum of eight characters, at least one uppercase letter, one lowercase letter, and one number");
-//        }
+        if(passwordStr.length() != 64 && !passwordStr.matches("^[0-9A-F]+$")) {
+            if(!passwordStr.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$")) {
+                throw new IllegalArgumentException("Password must include a minimum of eight characters, at least one uppercase letter, one lowercase letter, and one number");
+            }
+        }
         this.password = passwordStr.toCharArray();
     }
 

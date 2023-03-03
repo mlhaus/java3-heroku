@@ -12,6 +12,7 @@
     <li><a href="temp">Temperature Converter</a></li>
     <li><a href="bmi">Body Mass Index App</a></li>
     <li><a href="messaging">Messaging App</a></li>
+    <li><a href="countries">Countries App</a></li>
 </ul>
 <h3>Chapter 5</h3>
 <ul>
