@@ -13,6 +13,7 @@
     <li><a href="bmi">Body Mass Index App</a></li>
     <li><a href="messaging">Messaging App</a></li>
     <li><a href="countries">Countries App</a></li>
+    <li><a href="artist">Spotify App</a></li>
 </ul>
 <h3>Chapter 5</h3>
 <ul>
