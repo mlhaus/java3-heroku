@@ -1,4 +1,4 @@
-<%@ page import="com.hauschildt.ch5.User" %>
+<%@ page import="com.hauschildt.ch5and6.User" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -28,9 +28,8 @@
                 <li class="list-group-item active"><%= user.getFirst_name()%> <%= user.getLast_name() %></li>
                 <li class="list-group-item">ID: <%= user.getId()%></li>
                 <li class="list-group-item">Email: <%= user.getEmail()%></li>
-                <li class="list-group-item">Phone: <%= user.getPhone()%></li>
-                <li class="list-group-item">Password: <%= user.getPassword()%></li>
                 <li class="list-group-item">Status: <%= user.getStatus() %></li>
+                <li class="list-group-item">Privileges: <%= user.getPrivileges() %></li>
             </ul>
         </div>
         <% } %>

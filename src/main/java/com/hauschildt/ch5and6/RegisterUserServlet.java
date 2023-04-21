@@ -1,4 +1,4 @@
-package com.hauschildt.ch5;
+package com.hauschildt.ch5and6;
 
 import com.hauschildt.data_access.UserDAO_MySQL;
 
@@ -21,12 +21,10 @@ public class RegisterUserServlet extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
-        String[] agreeToTerms = request.getParameterValues("agree-to-terms");
-        Map<String,String> results = new HashMap<>();
-
+        String[] agreeToTerms = request.getParameterValues("agree-to-terms"); // use with checkboxes
+        Map<String, String> results = new HashMap<>();
         User user = new User();
         try {
             user.setFirst_name(firstName);
@@ -44,11 +42,6 @@ public class RegisterUserServlet extends HttpServlet {
             results.put("emailError", e.getMessage());
         }
         try {
-            user.setPhone(phone);
-        } catch(IllegalArgumentException e) {
-            results.put("phoneError", e.getMessage());
-        }
-        try {
             user.setPassword(password1.toCharArray());
         } catch(IllegalArgumentException e) {
             results.put("password1Error", e.getMessage());
@@ -62,40 +55,27 @@ public class RegisterUserServlet extends HttpServlet {
         if(agreeToTerms == null || !agreeToTerms[0].equals("agree")){
             results.put("agreeError", "You must agree to our terms and conditions");
         }
-
-        // if there are no errors
         if(!results.containsKey("firstNameError") && !results.containsKey("lastNameError")
                 && !results.containsKey("emailError") && !results.containsKey("phoneError")
                 && !results.containsKey("password1Error") && !results.containsKey("password2Error")
                 && !results.containsKey("agreeError")
         ) {
-            UserDAO_MySQL userDAO = new UserDAO_MySQL();
-            int numRowsAffected = userDAO.addUser(user);
+            UserDAO_MySQL dao = new UserDAO_MySQL();
+            int numRowsAffected = dao.addUser(user);
             if(numRowsAffected == 1) {
-                numRowsAffected = userDAO.generate2FA(user);
-                if(numRowsAffected == 1) {
-                    response.sendRedirect("validate-user");
-                    return;
-                } else {
-                    results.put("userAddFail", "2-Factor code not generated");
-                }
-            } else {
-                results.put("userAddFail", "Your user account could not be created");
+                results.put("userAddSuccess", "New user added. Please login to continue.");
+                // TO DO: redirect user to login page.
             }
-        }
-
-        if(!results.containsKey("userAddSuccess")) {
+        } else {
             results.put("firstName", firstName);
             results.put("lastName", lastName);
-            results.put("phone", phone);
             results.put("email", email);
             results.put("password1", password1);
             results.put("password2", password2);
-            if(agreeToTerms != null && agreeToTerms[0].equals("agree")) {
+            if (agreeToTerms != null && agreeToTerms[0].equals("agree")) {
                 results.put("agreeToTerms", agreeToTerms[0]);
             }
         }
-
         request.setAttribute("results", results);
         request.getRequestDispatcher("WEB-INF/ch5/register.jsp").forward(request, response);
     }
