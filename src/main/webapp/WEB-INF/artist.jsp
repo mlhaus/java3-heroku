@@ -53,7 +53,8 @@
             <th scope="col">Spotify</th>
         </tr>
         </thead>
-
+        <%--   This is a JSP Comment     --%>
+        <!-- This is an HTML Comment -->
         <tbody>
         <% for(Artist artist: artists) { %>
         <tr>

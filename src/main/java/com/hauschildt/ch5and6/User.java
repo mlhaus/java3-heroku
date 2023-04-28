@@ -1,9 +1,10 @@
 package com.hauschildt.ch5and6;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-public class User {
+// Java Bean
+public class User implements Serializable {
     private int id;
     private String first_name;
     private String last_name;
